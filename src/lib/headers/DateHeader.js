@@ -6,6 +6,7 @@ import { getNextUnit } from '../utility/calendar'
 import { defaultHeaderFormats } from '../default-config'
 import Interval from './Interval'
 import moment from 'moment'
+import InrervalWrapper from './InrervalWrapper'
 
 class DateHeader extends React.Component {
   static propTypes = {
@@ -53,7 +54,7 @@ class DateHeader extends React.Component {
 
   render() {
     const unit = this.getHeaderUnit()
-    const { headerData, height } = this.props
+    const { headerData, height, labelFormat } = this.props
     return (
       <CustomHeader unit={unit} height={height} headerData={headerData}>
         {({
@@ -73,6 +74,29 @@ class DateHeader extends React.Component {
           // console.log(subarr)
           return (
             <React.Fragment>
+              {unit === 'day' && (
+                <div
+                  data-testid={`dateHeader`}
+                  className={this.props.className}
+                  {...getRootProps({ style: this.getRootStyle() })}
+                >
+                  {subarr.map((elem, i) => {
+                    return (
+                      <InrervalWrapper
+                        key={i}
+                        item={elem}
+                        unit={unit}
+                        labelFormat={labelFormat}
+                        showPeriod={showPeriod}
+                        primaryHeader={this.props.unit === 'primaryHeader'}
+                        getIntervalProps={getIntervalProps}
+                        intervalRenderer={this.props.intervalRenderer}
+                        headerData={data}
+                      />
+                    )
+                  })}
+                </div>
+              )}
               <div
                 data-testid={`dateHeader`}
                 className={this.props.className}
@@ -102,42 +126,6 @@ class DateHeader extends React.Component {
                   )
                 })}
               </div>
-              {unit === 'day' && (
-                <div
-                  className={this.props.className}
-                  {...getRootProps({ style: this.getRootStyle() })}
-                >
-                  {' '}
-                  {subarr.map((elem, i) => {
-                    // const intervalText = this.getLabelFormat(
-                    //   [
-                    //     interval.startTime.locale('ru'),
-                    //     interval.endTime.locale('ru')
-                    //   ],
-                    //   unit,
-                    //   interval.labelWidth
-                    // )
-                    return (
-                      <div key={i}>
-                        {/* {elem.map(el => (
-                          <div key={el.startTime}>{moment(el.startTime)}</div>
-                        ))} */}
-                      </div>
-                      // <Interval
-                      //   key={`label-${interval.startTime.valueOf()}`}
-                      //   unit={unit}
-                      //   interval={interval}
-                      //   showPeriod={showPeriod}
-                      //   intervalText={intervalText}
-                      //   primaryHeader={this.props.unit === 'primaryHeader'}
-                      //   getIntervalProps={getIntervalProps}
-                      //   intervalRenderer={this.props.intervalRenderer}
-                      //   headerData={data}
-                      // />
-                    )
-                  })}
-                </div>
-              )}
             </React.Fragment>
           )
         }}

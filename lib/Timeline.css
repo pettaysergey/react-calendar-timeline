@@ -101,6 +101,9 @@
   background-color: #f0f0f0;
   border-left: 2px solid #bbb; }
 
+.react-calendar-timeline .rct-holyday-date {
+  background-color: #c52020; }
+
 .react-calendar-timeline .rct-dateHeader-primary {
   background-color: initial;
   border-left: 1px solid #bbb;

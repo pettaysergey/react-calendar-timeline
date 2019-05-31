@@ -28,7 +28,7 @@ export const defaultHeaderFormats = {
     short: 'YY'
   },
   month: {
-    long: 'MMMM YYYY',
+    long: 'MMMM',
     mediumLong: 'MMMM',
     medium: 'MMMM',
     short: 'MM/YY'
@@ -40,10 +40,10 @@ export const defaultHeaderFormats = {
     short: 'w'
   },
   day: {
-    long: 'dddd, LL',
-    mediumLong: 'dddd, LL',
-    medium: 'dd D',
-    short: 'D'
+    long: 'dd',
+    mediumLong: 'dd',
+    medium: 'dd',
+    short: 'dd'
   },
   hour: {
     long: 'dddd, LL, HH:00',
@@ -55,7 +55,7 @@ export const defaultHeaderFormats = {
     long: 'HH:mm',
     mediumLong: 'HH:mm',
     medium: 'HH:mm',
-    short: 'mm',
+    short: 'mm'
   }
 }
 

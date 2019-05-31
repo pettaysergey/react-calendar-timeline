@@ -38,8 +38,6 @@ $weekend: rgba(250, 246, 225, 0.5);
   }
 
   .rct-item {
-
-
     &:hover {
       z-index: 88;
     }
@@ -134,7 +132,7 @@ $weekend: rgba(250, 246, 225, 0.5);
     background: rgba(0, 0, 0, 0.5);
     color: white;
     padding: 10px;
-    
+
     font-size: 20px;
     border-radius: 5px;
     z-index: 85;
@@ -149,14 +147,18 @@ $weekend: rgba(250, 246, 225, 0.5);
     cursor: pointer;
     font-size: 14px;
     background-color: rgb(240, 240, 240);
-    border-left:  2px solid #bbb;
+    border-left: 2px solid #bbb;
+  }
+
+  .rct-holyday-date {
+    background-color: #c52020;
   }
 
   .rct-dateHeader-primary {
     background-color: initial;
-    border-left:  1px solid #bbb;
+    border-left: 1px solid #bbb;
     border-right: 1px solid #bbb;
-    color: #fff
+    color: #fff;
   }
 
   .rct-header-root {
@@ -165,8 +167,6 @@ $weekend: rgba(250, 246, 225, 0.5);
   }
 
   .rct-calendar-header {
-    border: 1px solid #bbb,
-
+    border: 1px solid #bbb;
   }
-
 }

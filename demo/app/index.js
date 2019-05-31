@@ -7,14 +7,14 @@ import { HashRouter as Router, Route, Link, withRouter } from 'react-router-dom'
 
 const demos = {
   main: require('./demo-main').default,
-  performance: require('./demo-performance').default,
-  treeGroups: require('./demo-tree-groups').default,
-  linkedTimelines: require('./demo-linked-timelines').default,
-  elementResize: require('./demo-element-resize').default,
-  renderers: require('./demo-renderers').default,
-  verticalClasses: require('./demo-vertical-classes').default,
-  customItems: require('./demo-custom-items').default,
-  customHeaders: require('./demo-headers').default,
+  // performance: require('./demo-performance').default,
+  // treeGroups: require('./demo-tree-groups').default,
+  // linkedTimelines: require('./demo-linked-timelines').default,
+  // elementResize: require('./demo-element-resize').default,
+  // renderers: require('./demo-renderers').default,
+  // verticalClasses: require('./demo-vertical-classes').default,
+  // customItems: require('./demo-custom-items').default,
+  customHeaders: require('./demo-headers').default
 }
 
 // A simple component that shows the pathname of the current location

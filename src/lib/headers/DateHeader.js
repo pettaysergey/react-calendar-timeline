@@ -5,6 +5,7 @@ import CustomHeader from './CustomHeader'
 import { getNextUnit } from '../utility/calendar'
 import { defaultHeaderFormats } from '../default-config'
 import Interval from './Interval'
+import moment from 'moment'
 
 class DateHeader extends React.Component {
   static propTypes = {
@@ -19,7 +20,7 @@ class DateHeader extends React.Component {
     ]).isRequired,
     intervalRenderer: PropTypes.func,
     headerData: PropTypes.object,
-    height: PropTypes.number,
+    height: PropTypes.number
   }
 
   getHeaderUnit = () => {
@@ -63,34 +64,81 @@ class DateHeader extends React.Component {
           data
         }) => {
           const unit = this.getHeaderUnit()
-
+          // console.log(intervals)
+          const subarr = []
+          let size = 7
+          for (let i = 0; i < Math.ceil(intervals.length / size); i++) {
+            subarr[i] = intervals.slice(i * size, i * size + size)
+          }
+          // console.log(subarr)
           return (
-            <div
-              data-testid={`dateHeader`}
-              className={this.props.className}
-              {...getRootProps({ style: this.getRootStyle() })}
-            >
-              {intervals.map(interval => {
-                const intervalText = this.getLabelFormat(
-                  [interval.startTime, interval.endTime],
-                  unit,
-                  interval.labelWidth
-                )
-                return (
-                  <Interval
-                    key={`label-${interval.startTime.valueOf()}`}
-                    unit={unit}
-                    interval={interval}
-                    showPeriod={showPeriod}
-                    intervalText={intervalText}
-                    primaryHeader={this.props.unit === 'primaryHeader'}
-                    getIntervalProps={getIntervalProps}
-                    intervalRenderer={this.props.intervalRenderer}
-                    headerData={data}
-                  />
-                )
-              })}
-            </div>
+            <React.Fragment>
+              <div
+                data-testid={`dateHeader`}
+                className={this.props.className}
+                {...getRootProps({ style: this.getRootStyle() })}
+              >
+                {intervals.map(interval => {
+                  const intervalText = this.getLabelFormat(
+                    [
+                      interval.startTime.locale('ru'),
+                      interval.endTime.locale('ru')
+                    ],
+                    unit,
+                    interval.labelWidth
+                  )
+                  return (
+                    <Interval
+                      key={`label-${interval.startTime.valueOf()}`}
+                      unit={unit}
+                      interval={interval}
+                      showPeriod={showPeriod}
+                      intervalText={intervalText}
+                      primaryHeader={this.props.unit === 'primaryHeader'}
+                      getIntervalProps={getIntervalProps}
+                      intervalRenderer={this.props.intervalRenderer}
+                      headerData={data}
+                    />
+                  )
+                })}
+              </div>
+              {unit === 'day' && (
+                <div
+                  className={this.props.className}
+                  {...getRootProps({ style: this.getRootStyle() })}
+                >
+                  {' '}
+                  {subarr.map((elem, i) => {
+                    // const intervalText = this.getLabelFormat(
+                    //   [
+                    //     interval.startTime.locale('ru'),
+                    //     interval.endTime.locale('ru')
+                    //   ],
+                    //   unit,
+                    //   interval.labelWidth
+                    // )
+                    return (
+                      <div key={i}>
+                        {/* {elem.map(el => (
+                          <div key={el.startTime}>{moment(el.startTime)}</div>
+                        ))} */}
+                      </div>
+                      // <Interval
+                      //   key={`label-${interval.startTime.valueOf()}`}
+                      //   unit={unit}
+                      //   interval={interval}
+                      //   showPeriod={showPeriod}
+                      //   intervalText={intervalText}
+                      //   primaryHeader={this.props.unit === 'primaryHeader'}
+                      //   getIntervalProps={getIntervalProps}
+                      //   intervalRenderer={this.props.intervalRenderer}
+                      //   headerData={data}
+                      // />
+                    )
+                  })}
+                </div>
+              )}
+            </React.Fragment>
           )
         }}
       </CustomHeader>
@@ -105,7 +153,7 @@ const DateHeaderWrapper = ({
   className,
   intervalRenderer,
   headerData,
-  height,
+  height
 }) => (
   <TimelineStateConsumer>
     {({ getTimelineState }) => {
@@ -137,7 +185,7 @@ DateHeaderWrapper.propTypes = {
   ]),
   intervalRenderer: PropTypes.func,
   headerData: PropTypes.object,
-  height: PropTypes.number,
+  height: PropTypes.number
 }
 
 DateHeaderWrapper.defaultProps = {

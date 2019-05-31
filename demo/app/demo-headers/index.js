@@ -95,15 +95,14 @@ export default class App extends Component {
     const group = groups[newGroupOrder]
 
     this.setState({
-      items: items.map(
-        item =>
-          item.id === itemId
-            ? Object.assign({}, item, {
-                start: dragTime,
-                end: dragTime + (item.end - item.start),
-                group: group.id
-              })
-            : item
+      items: items.map(item =>
+        item.id === itemId
+          ? Object.assign({}, item, {
+              start: dragTime,
+              end: dragTime + (item.end - item.start),
+              group: group.id
+            })
+          : item
       )
     })
 
@@ -114,14 +113,13 @@ export default class App extends Component {
     const { items } = this.state
 
     this.setState({
-      items: items.map(
-        item =>
-          item.id === itemId
-            ? Object.assign({}, item, {
-                start: edge === 'left' ? time : item.start,
-                end: edge === 'left' ? item.end : time
-              })
-            : item
+      items: items.map(item =>
+        item.id === itemId
+          ? Object.assign({}, item, {
+              start: edge === 'left' ? time : item.start,
+              end: edge === 'left' ? item.end : time
+            })
+          : item
       )
     })
 
@@ -158,7 +156,25 @@ export default class App extends Component {
   }
 
   render() {
-    const { groups, items, defaultTimeStart, defaultTimeEnd } = this.state
+    const { defaultTimeStart, defaultTimeEnd } = this.state
+    const items = [
+      {
+        id: 1,
+        group: 1545,
+        title: 'В отпуск хочу',
+        start: moment('2019-05-13'),
+        end: moment('2019-06-13'),
+        color: '#323232',
+        canMove: false,
+        canResize: false,
+        canSelect: false,
+        className: 'weekend',
+        style: {
+          backgroundColor: 'red'
+        }
+      }
+    ]
+    const groups = [{ id: 1545, title: 'Петтай' }]
 
     return (
       <div>
@@ -194,23 +210,20 @@ export default class App extends Component {
           rightSidebarContent={<div>Above The Right</div>}
         >
           <TimelineHeaders className="header-background">
-            <SidebarHeader/>
+            <SidebarHeader />
             <DateHeader
               labelFormat={this.state.format ? 'd' : undefined}
-              unit= "primaryHeader"
+              unit="primaryHeader"
             />
             <DateHeader height={50} />
             <CustomHeader unit="year" headerData={{ hey: 'you' }}>
-              {(
-                {
-                  headerContext: { intervals },
-                  getRootProps,
-                  getIntervalProps,
-                  showPeriod,
-                  data,
-                },
-                
-              ) => {
+              {({
+                headerContext: { intervals },
+                getRootProps,
+                getIntervalProps,
+                showPeriod,
+                data
+              }) => {
                 console.log('props', data)
                 return (
                   <div {...getRootProps()}>
@@ -320,10 +333,11 @@ export default class App extends Component {
               labelFormat="MM/DD"
               height={50}
               headerData={{ hey: 'date header' }}
-              intervalRenderer={(
-                { getIntervalProps, intervalContext, data },
-                
-              ) => {
+              intervalRenderer={({
+                getIntervalProps,
+                intervalContext,
+                data
+              }) => {
                 console.log('intervalRenderer props', data)
                 return (
                   <div {...getIntervalProps()}>
@@ -336,7 +350,7 @@ export default class App extends Component {
               ? [
                   <DateHeader
                     labelFormat={this.state.format ? 'd' : undefined}
-                    unit = "primaryHeader"
+                    unit="primaryHeader"
                   />,
                   <DateHeader height={50} />
                 ]

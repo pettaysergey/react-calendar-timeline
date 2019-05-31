@@ -15,8 +15,20 @@ class Interval extends React.PureComponent {
     headerData: PropTypes.object
   }
 
+  // для того, чтобы показывать при монтировании месяц с датами
+  componentDidMount() {
+    const { primaryHeader, unit, interval, showPeriod } = this.props
+    if (primaryHeader && unit === 'day') {
+      const nextUnit = getNextUnit(unit)
+      const newStartTime = interval.startTime.clone().startOf(nextUnit)
+      const newEndTime = interval.startTime.clone().endOf(nextUnit)
+      showPeriod(newStartTime, newEndTime)
+    }
+  }
+
   onIntervalClick = () => {
     const { primaryHeader, interval, unit, showPeriod } = this.props
+    // console.log(unit, primaryHeader)
     if (primaryHeader) {
       const nextUnit = getNextUnit(unit)
       const newStartTime = interval.startTime.clone().startOf(nextUnit)
@@ -40,6 +52,7 @@ class Interval extends React.PureComponent {
   render() {
     const { intervalText, interval, intervalRenderer, headerData } = this.props
     const Renderer = intervalRenderer
+    const redStyle = ['сб', 'вс'].includes(intervalText)
     if (Renderer) {
       return (
         <Renderer
@@ -56,9 +69,10 @@ class Interval extends React.PureComponent {
     return (
       <div
         data-testid="dateHeaderInterval"
-        {...this.getIntervalProps({
-        })}
-        className={`rct-dateHeader ${this.props.primaryHeader? 'rct-dateHeader-primary' : ''}`}
+        {...this.getIntervalProps({})}
+        className={`rct-dateHeader ${
+          this.props.primaryHeader ? 'rct-dateHeader-primary' : ''
+        } ${redStyle ? 'rct-holyday-date' : 'rct-usial-date'}`}
       >
         <span>{intervalText}</span>
       </div>

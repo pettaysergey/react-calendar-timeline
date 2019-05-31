@@ -89,15 +89,14 @@ export default class App extends Component {
     const group = groups[newGroupOrder]
 
     this.setState({
-      items: items.map(
-        item =>
-          item.id === itemId
-            ? Object.assign({}, item, {
-                start: dragTime,
-                end: dragTime + (item.end - item.start),
-                group: group.id
-              })
-            : item
+      items: items.map(item =>
+        item.id === itemId
+          ? Object.assign({}, item, {
+              start: dragTime,
+              end: dragTime + (item.end - item.start),
+              group: group.id
+            })
+          : item
       )
     })
 
@@ -108,14 +107,13 @@ export default class App extends Component {
     const { items } = this.state
 
     this.setState({
-      items: items.map(
-        item =>
-          item.id === itemId
-            ? Object.assign({}, item, {
-                start: edge === 'left' ? time : item.start,
-                end: edge === 'left' ? item.end : time
-              })
-            : item
+      items: items.map(item =>
+        item.id === itemId
+          ? Object.assign({}, item, {
+              start: edge === 'left' ? time : item.start,
+              end: edge === 'left' ? item.end : time
+            })
+          : item
       )
     })
 
@@ -146,8 +144,25 @@ export default class App extends Component {
   }
 
   render() {
-    const { groups, items, defaultTimeStart, defaultTimeEnd } = this.state
-
+    const { defaultTimeStart, defaultTimeEnd } = this.state
+    const items = [
+      {
+        id: 1,
+        group: 1545,
+        title: 'В отпуск хочу',
+        start: moment('2019-05-13'),
+        end: moment('2019-06-13'),
+        color: '#323232',
+        canMove: false,
+        canResize: false,
+        canSelect: false,
+        className: 'weekend',
+        style: {
+          backgroundColor: 'red'
+        }
+      }
+    ]
+    const groups = [{ id: 1545, title: 'Петтай' }]
     return (
       <Timeline
         groups={groups}
@@ -156,7 +171,7 @@ export default class App extends Component {
         sidebarWidth={150}
         sidebarContent={<div>Above The Left</div>}
         canMove
-        canResize="right"
+        // canResize="right"
         canSelect
         itemsSorted
         itemTouchSendsClick={false}
@@ -164,40 +179,22 @@ export default class App extends Component {
         itemHeightRatio={0.75}
         defaultTimeStart={defaultTimeStart}
         defaultTimeEnd={defaultTimeEnd}
-        onCanvasClick={this.handleCanvasClick}
-        onCanvasDoubleClick={this.handleCanvasDoubleClick}
-        onCanvasContextMenu={this.handleCanvasContextMenu}
-        onItemClick={this.handleItemClick}
-        onItemSelect={this.handleItemSelect}
-        onItemContextMenu={this.handleItemContextMenu}
-        onItemMove={this.handleItemMove}
-        onItemResize={this.handleItemResize}
-        onItemDoubleClick={this.handleItemDoubleClick}
-        onTimeChange={this.handleTimeChange}
-        moveResizeValidator={this.moveResizeValidator}
+        // onCanvasClick={this.handleCanvasClick}
+        // onCanvasDoubleClick={this.handleCanvasDoubleClick}
+        // onCanvasContextMenu={this.handleCanvasContextMenu}
+        // onItemClick={this.handleItemClick}
+        // onItemSelect={this.handleItemSelect}
+        // onItemContextMenu={this.handleItemContextMenu}
+        // onItemMove={this.handleItemMove}
+        // onItemResize={this.handleItemResize}
+        // onItemDoubleClick={this.handleItemDoubleClick}
+        // onTimeChange={this.handleTimeChange}
+        // moveResizeValidator={this.moveResizeValidator}
       >
-        <TimelineMarkers>
-          <TodayMarker />
-          <CustomMarker
-            date={
-              moment()
-                .startOf('day')
-                .valueOf() +
-              1000 * 60 * 60 * 2
-            }
-          />
-          <CustomMarker
-            date={moment()
-              .add(3, 'day')
-              .valueOf()}
-          >
-            {({ styles }) => {
-              const newStyles = { ...styles, backgroundColor: 'blue' }
-              return <div style={newStyles} />
-            }}
-          </CustomMarker>
-          <CursorMarker />
-        </TimelineMarkers>
+        {/* <TimelineHeaders>
+          <DateHeader unit="primaryHeader" />
+          <DateHeader height={50} />
+        </TimelineHeaders> */}
       </Timeline>
     )
   }

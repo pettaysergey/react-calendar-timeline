@@ -65,13 +65,11 @@ class DateHeader extends React.Component {
           data
         }) => {
           const unit = this.getHeaderUnit()
-          // console.log(intervals)
           const subarr = []
           let size = 7
           for (let i = 0; i < Math.ceil(intervals.length / size); i++) {
             subarr[i] = intervals.slice(i * size, i * size + size)
           }
-          // console.log(subarr)
           return (
             <React.Fragment>
               {unit === 'day' && (

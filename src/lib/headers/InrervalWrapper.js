@@ -86,7 +86,6 @@ class Interval extends React.PureComponent {
 
   render() {
     const { intervalText, interval } = this.props
-    console.log(this.props)
     const rightBorder = intervalText === 'вс'
     return (
       <div

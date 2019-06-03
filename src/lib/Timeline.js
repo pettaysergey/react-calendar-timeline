@@ -162,6 +162,7 @@ export default class ReactCalendarTimeline extends Component {
   }
 
   static defaultProps = {
+    setCustomUnit: null,
     sidebarWidth: 150,
     rightSidebarWidth: 0,
     dragSnap: 1000 * 60 * 15, // 15min

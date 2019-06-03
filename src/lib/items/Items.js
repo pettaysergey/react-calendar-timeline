@@ -104,7 +104,7 @@ export default class Items extends Component {
       keys,
       groups
     } = this.props
-    console.log(dimensionItems)
+    // console.log(dimensionItems)
     const { itemIdKey, itemGroupKey } = keys
 
     const groupOrders = getGroupOrders(groups, keys)

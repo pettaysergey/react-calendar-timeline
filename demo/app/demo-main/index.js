@@ -143,6 +143,10 @@ export default class App extends Component {
     return time
   }
 
+  setCustomUnit = unit => {
+    console.log(unit)
+  }
+
   render() {
     const { defaultTimeStart, defaultTimeEnd } = this.state
     const items = [
@@ -213,6 +217,7 @@ export default class App extends Component {
         itemHeightRatio={0.75}
         defaultTimeStart={defaultTimeStart}
         defaultTimeEnd={defaultTimeEnd}
+        setCustomUnit={this.setCustomUnit}
         // onCanvasClick={this.handleCanvasClick}
         // onCanvasDoubleClick={this.handleCanvasDoubleClick}
         // onCanvasContextMenu={this.handleCanvasContextMenu}

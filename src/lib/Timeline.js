@@ -37,6 +37,7 @@ import SidebarHeader from './headers/SidebarHeader'
 
 export default class ReactCalendarTimeline extends Component {
   static propTypes = {
+    setCustomUnit: PropTypes.func,
     groups: PropTypes.oneOfType([PropTypes.array, PropTypes.object]).isRequired,
     items: PropTypes.oneOfType([PropTypes.array, PropTypes.object]).isRequired,
     sidebarWidth: PropTypes.number,
@@ -410,9 +411,16 @@ export default class ReactCalendarTimeline extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
+    // получение unit
+    const { width, visibleTimeStart, visibleTimeEnd } = this.state
+    const { setCustomUnit, timeSteps } = this.props
+    const zoom = visibleTimeEnd - visibleTimeStart
+    const minUnit = getMinUnit(zoom, width, timeSteps)
+    setCustomUnit(minUnit)
+    //
+    // console.log(minUnit)
     const newZoom = this.state.visibleTimeEnd - this.state.visibleTimeStart
     const oldZoom = prevState.visibleTimeEnd - prevState.visibleTimeStart
-
     // are we changing zoom? Report it!
     if (this.props.onZoom && newZoom !== oldZoom) {
       this.props.onZoom(this.getTimelineContext())

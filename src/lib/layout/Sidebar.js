@@ -11,7 +11,7 @@ export default class Sidebar extends Component {
     groupHeights: PropTypes.array.isRequired,
     keys: PropTypes.object.isRequired,
     groupRenderer: PropTypes.func,
-    isRightSidebar: PropTypes.bool,
+    isRightSidebar: PropTypes.bool
   }
 
   shouldComponentUpdate(nextProps) {
@@ -51,15 +51,17 @@ export default class Sidebar extends Component {
 
     let groupLines = this.props.groups.map((group, index) => {
       const elementStyle = {
-        height: `${groupHeights[index] - 1}px`,
-        lineHeight: `${groupHeights[index] - 1}px`
+        height: `44px`,
+        display: 'flex',
+        alignItems: 'center'
       }
 
       return (
         <div
           key={_get(group, groupIdKey)}
           className={
-            'rct-sidebar-row rct-sidebar-row-' + (index % 2 === 0 ? 'even' : 'odd')
+            'rct-sidebar-row rct-sidebar-row-' +
+            (index % 2 === 0 ? 'even' : 'odd')
           }
           style={elementStyle}
         >

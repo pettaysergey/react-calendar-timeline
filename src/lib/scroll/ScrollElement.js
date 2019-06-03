@@ -25,8 +25,8 @@ class ScrollElement extends Component {
   refHandler = el => {
     this.scrollComponent = el
     this.props.scrollRef(el)
-    if(el){
-      el.addEventListener('wheel', this.handleWheel, {passive: false});
+    if (el) {
+      el.addEventListener('wheel', this.handleWheel, { passive: false })
     }
   }
 
@@ -37,8 +37,6 @@ class ScrollElement extends Component {
 
   handleWheel = e => {
     const { traditionalZoom } = this.props
-
-    
 
     // zoom in the time dimension
     if (e.ctrlKey || e.metaKey || e.altKey) {
@@ -165,9 +163,9 @@ class ScrollElement extends Component {
     }
   }
 
-  componentWillUnmount(){
-    if(this.scrollComponent){
-      this.scrollComponent.removeEventListener('wheel', this.handleWheel);
+  componentWillUnmount() {
+    if (this.scrollComponent) {
+      this.scrollComponent.removeEventListener('wheel', this.handleWheel)
     }
   }
 
@@ -199,7 +197,6 @@ class ScrollElement extends Component {
       >
         {children}
       </div>
-
     )
   }
 }

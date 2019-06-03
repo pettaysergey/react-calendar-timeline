@@ -539,7 +539,7 @@ export function stackTimelineItems(
   const { height, groupHeights, groupTops } = stackAll(
     dimensionItems,
     groupOrders,
-    lineHeight,
+    44,
     stackItems
   )
   return { dimensionItems, height, groupHeights, groupTops }
@@ -584,13 +584,15 @@ export function getItemDimensions({
     canvasWidth
   })
   if (dimension) {
+    // debugger
     dimension.top = null
     dimension.order = groupOrders[_get(item, keys.itemGroupKey)]
     dimension.stack = !item.isOverlay
     dimension.height = lineHeight * itemHeightRatio
     return {
       id: itemId,
-      dimensions: dimension
+      dimensions: dimension,
+      test: 'here'
     }
   }
 }

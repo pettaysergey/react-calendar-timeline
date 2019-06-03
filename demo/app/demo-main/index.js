@@ -160,9 +160,43 @@ export default class App extends Component {
         style: {
           backgroundColor: 'red'
         }
+      },
+      {
+        id: 2,
+        group: 1544,
+        title: 'В отпуск хочу',
+        start: moment('2019-05-13'),
+        end: moment('2019-06-13'),
+        color: '#323232',
+        canMove: false,
+        canResize: false,
+        canSelect: false,
+        className: 'weekend',
+        style: {
+          backgroundColor: 'red'
+        }
+      },
+      {
+        id: 3,
+        group: 1543,
+        title: 'В отпуск хочу',
+        start: moment('2019-05-13'),
+        end: moment('2019-06-13'),
+        color: '#323232',
+        canMove: false,
+        canResize: false,
+        canSelect: false,
+        className: 'weekend',
+        style: {
+          backgroundColor: 'red'
+        }
       }
     ]
-    const groups = [{ id: 1545, title: 'Петтай' }]
+    const groups = [
+      { id: 1545, title: 'Петтай' },
+      { id: 1544, title: 'Форманюк' },
+      { id: 1543, title: 'Хорук' }
+    ]
     return (
       <Timeline
         groups={groups}

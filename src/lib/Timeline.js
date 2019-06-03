@@ -416,7 +416,7 @@ export default class ReactCalendarTimeline extends Component {
     const { setCustomUnit, timeSteps } = this.props
     const zoom = visibleTimeEnd - visibleTimeStart
     const minUnit = getMinUnit(zoom, width, timeSteps)
-    setCustomUnit(minUnit)
+    setCustomUnit && setCustomUnit(minUnit)
     //
     // console.log(minUnit)
     const newZoom = this.state.visibleTimeEnd - this.state.visibleTimeStart

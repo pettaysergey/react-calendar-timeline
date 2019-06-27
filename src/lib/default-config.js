@@ -28,7 +28,7 @@ export const defaultHeaderFormats = {
     short: 'YY'
   },
   month: {
-    long: 'MMMM',
+    long: 'MMMM Y',
     mediumLong: 'MMMM',
     medium: 'MMMM',
     short: 'MM/YY'

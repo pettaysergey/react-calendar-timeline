@@ -185,7 +185,7 @@ function formatLabel(
   formatOptions = defaultHeaderFormats
 ) {
   let format
-  if (labelWidth >= 150) {
+  if (labelWidth >= 250) {
     format = formatOptions[unit]['long']
   } else if (labelWidth >= 100) {
     format = formatOptions[unit]['mediumLong']
